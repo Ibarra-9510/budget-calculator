@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budget Calculator</title>
+    <style>
+        /* Add some basic styles for better presentation */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        select {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Budget Calculator</h1>
+        <div class="input-group">
+            <label for="totalIncome">Total Income:</label>
+            <input type="number" id="totalIncome" placeholder="Enter your total income">
+        </div>
+        <div class="input-group">
+            <label for="budgetMethod">Select Budgeting Method:</label>
+            <select id="budgetMethod">
+                <option value="50-30-20">50-30-20 Rule</option>
+                <option value="60-30-10">60-30-10 Rule</option>
+                <option value="70-20-10">70-20-10 Rule</option>
+                <option value="50-40-10">50-40-10 Rule</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="needs">Needs:</label>
+            <input type="number" id="needs" readonly>
+        </div>
+        <div class="input-group">
+            <label for="wants">Wants:</label>
+            <input type="number" id="wants" readonly>
+        </div>
+        <div class="input-group">
+            <label for="savings">Savings:</label>
+            <input type="number" id="savings" readonly>
+        </div>
+        <button onclick="calculateBudget()">Calculate</button>
+    </div>
+
+    <script>
+        function calculateBudget() {
+            var totalIncome = parseFloat(document.getElementById('totalIncome').value);
+            var budgetMethod = document.getElementById('budgetMethod').value;
+
+            var needs, wants, savings;
+
+            switch (budgetMethod) {
+                case '50-30-20':
+                    needs = (totalIncome * 0.5).toFixed(2);
+                    wants = (totalIncome * 0.3).toFixed(2);
+                    savings = (totalIncome * 0.2).toFixed(2);
+                    break;
+                case '60-30-10':
+                    needs = (totalIncome * 0.6).toFixed(2);
+                    wants = (totalIncome * 0.3).toFixed(2);
+                    savings = (totalIncome * 0.1).toFixed(2);
+                    break;
+                case '70-20-10':
+                    needs = (totalIncome * 0.7).toFixed(2);
+                    wants = (totalIncome * 0.2).toFixed(2);
+                    savings = (totalIncome * 0.1).toFixed(2);
+                    break;
+                case '50-40-10':
+                    needs = (totalIncome * 0.5).toFixed(2);
+                    wants = (totalIncome * 0.4).toFixed(2);
+                    savings = (totalIncome * 0.1).toFixed(2);
+                    break;
+                default:
+                    break;
+            }
+
+            document.getElementById('needs').value = needs || '';
+            document.getElementById('wants').value = wants || '';
+            document.getElementById('savings').value = savings || '';
+        }
+    </script>
+</body>
+</html>
